@@ -1,61 +1,56 @@
-import java.io.*;
-import java.util.*;
-class Item {
-  String name;
-  int price;
-
-  public Item(String name, int price) {
-    this.name = name;
-    this.price = price;
-  }
-
-  public String toString() { 
-      return this.name + ": " + this.price;
-  }
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+public class Item2
+{
+    static int minimun (int arr[],int n,int k){
+        int results=Integer.MAX_VALUE;
+        Arrays.sort(arr);
+        fort(int i=0; i<=n;i++){
+            result=Math.min(result,arr[i+k-1}-arr[i]);
+    }
+    return result;
+    static int getting(int res,int arr[],int n,int k){
+        int result=Integer.MAX_VALUE;
+        for(int i=0;i<=n;i++){
+            result=Math.min(result,arr[i+k-1]-arr[i]);
+            if(res==result)
+            return i;
+        }
+        return 0;
+        }
+    }
+public static void main(String[] args)throws IOException{
+    int arr[]={7980,22349,999,2799,229900,11101,9999,2195,9800,4999};
+    //input file items 
+    String items[]={
+        "Fitbit Plus:7980",
+        "IPods: 22349";
+        "MI bands : 999";
+        "Cult Pass: 2799";
+        "Macbook Pro: 229900";
+        "Digital Camera: 11101";
+        "Alexa: 9999";
+        "Sandwich Toaster: 2195";
+        "Microwave Oven : 9800";
+        Scale : 4999"};
+        int n=arr.length;
+        System.out.println("Enter the number of employees");
+        Scanner sc =new Scanner (System.in);
+        int k=sc.nextInt();
+        int result=minimum(arr,n,k);
+        System.out.println("Number of the employees:"+k);
+        int start =getting(result,arr,n,k);
+        System.out.println("Here the input_items that are selected for distribution are: ")
+        for(int i=start;i<start=k;i++)
+        {
+            System.out.println(items[i]);
+        System.out.println("And the difference between the chosen goodie with highest price and the lowest price is:"+result);
+        }
 }
 
-public class Main {
-  public static void main(String[] args) throws Exception {
-    FileInputStream fis=new FileInputStream("input.txt");       
-    Scanner sc=new Scanner(fis);
-    int number_of_employees = Integer.parseInt(sc.nextLine().split(": ")[1]);
-    sc.nextLine(); sc.nextLine(); sc.nextLine();
-
-    ArrayList<Item> goodies_items = new ArrayList<Item>();
-
-    while(sc.hasNextLine())  
-    {
-      String current[] = sc.nextLine().split(": ");
-      goodies_items.add(new Item(current[0], Integer.parseInt(current[1])));
+        }
     }
-    sc.close();
-
-    Collections.sort(goodies_items, new Comparator<Item>(){
-      public int compare(Item a, Item b) { 
-        return a.price - b.price; 
-      } 
-    });
-
-    int min_diff = goodies_items.get(goodies_items.size()-1).price;
-    int min_index = 0;
-    for(int i=0;i<goodies_items.size()-number_of_employees+1;i++) {
-      int diff = goodies_items.get(number_of_employees+i-1).price-goodies_items.get(i).price;
-
-      if(diff<=min_diff) {
-        min_diff = diff;
-        min_index = i;
-      }
-    }
-    
-    
-
-    FileWriter fw = new FileWriter("output.txt");
-    fw.write("The goodies selected for distribution are:\n\n");
-    for(int i=min_index;i<min_index + number_of_employees; i++) {
-      fw.write(goodies_items.get(i).toString() + "\n");
-    }
-
-    fw.write("\nAnd the difference between the chosen goodie with highest price and the lowest price is " + min_diff);
-	  fw.close();
-  }
 }
+}
+
